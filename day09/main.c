@@ -19,13 +19,16 @@ int main()
         exit(1);
     }
 
-
     uint8_t field[WIDTH][HEIGHT];
     for(int i = 0; i < HEIGHT; i++)
     {
         for(int j = 0; j < WIDTH; j++)
         {
-            fscanf(fp, "%1hhd", &field[j][i]);
+            if(fscanf(fp, "%1hhd", &field[j][i]) == EOF)
+            {
+                printf("Input error\n");
+                exit(1);
+            }
         }
     }
 
@@ -73,7 +76,6 @@ int find_basin_size(uint8_t field[WIDTH][HEIGHT], int x, int y)
     memset(marks, 0, WIDTH * HEIGHT);
     int size = 0;
     dfs_size(field, marks, x, y, &size);
-    printf("%d\n", size);
     return size;
 }
 
@@ -88,8 +90,8 @@ void dfs_size(uint8_t field[WIDTH][HEIGHT], uint8_t marks[WIDTH][HEIGHT], int x,
 
     marks[x][y] = 1;
     (*size)++;
-    bfs_size(field, marks, x + 1, y, size);
-    bfs_size(field, marks, x - 1, y, size);
-    bfs_size(field, marks, x, y + 1, size);
-    bfs_size(field, marks, x, y - 1, size);
+    dfs_size(field, marks, x + 1, y, size);
+    dfs_size(field, marks, x - 1, y, size);
+    dfs_size(field, marks, x, y + 1, size);
+    dfs_size(field, marks, x, y - 1, size);
 }
