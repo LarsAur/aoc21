@@ -8,7 +8,7 @@
 #define HEIGHT 100
 
 int find_basin_size(uint8_t field[WIDTH][HEIGHT], int x, int y);
-void bfs_size(uint8_t field[WIDTH][HEIGHT], uint8_t marks[WIDTH][HEIGHT], int x, int y, int *size);
+void dfs_size(uint8_t field[WIDTH][HEIGHT], uint8_t marks[WIDTH][HEIGHT], int x, int y, int *size);
 
 int main()
 {
@@ -72,12 +72,12 @@ int find_basin_size(uint8_t field[WIDTH][HEIGHT], int x, int y)
     uint8_t marks[WIDTH][HEIGHT];
     memset(marks, 0, WIDTH * HEIGHT);
     int size = 0;
-    bfs_size(field, marks, x, y, &size);
+    dfs_size(field, marks, x, y, &size);
     printf("%d\n", size);
     return size;
 }
 
-void bfs_size(uint8_t field[WIDTH][HEIGHT], uint8_t marks[WIDTH][HEIGHT], int x, int y, int *size)
+void dfs_size(uint8_t field[WIDTH][HEIGHT], uint8_t marks[WIDTH][HEIGHT], int x, int y, int *size)
 {
     if(x < 0) return;
     if(y < 0) return;
