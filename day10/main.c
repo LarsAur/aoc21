@@ -33,6 +33,7 @@ int main()
     if (fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -71,6 +72,7 @@ int main()
     }
 
     fclose(fp);
+    free(list.arr);
 
     printf("Corrupt Points: %d\n", corrupt_points);
     printf("Complete Points: %ld\n", (long)median(list.arr, list.size));

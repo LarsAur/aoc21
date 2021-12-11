@@ -48,6 +48,7 @@ int filter_bit_criteria(int (*criteria)(char, int, int))
     if(fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -107,16 +108,18 @@ int filter_bit_criteria(int (*criteria)(char, int, int))
         value = (value << 1) | (rbin_str[OFFSET(0, i)] == '1');
     }
 
+    fclose(fp);
+
     return value;
 }
 
 void binary_diagnostic_a()
 {
-        FILE* fp = fopen("./inputs.txt", "r");
-
+    FILE* fp = fopen("./inputs.txt", "r");
     if(fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -134,6 +137,8 @@ void binary_diagnostic_a()
         }
         input_size++;
     }
+
+    fclose(fp);
 
     uint32_t gamma_rate = 0;
     for(int i = 0; i < BIT_COUNT; i++)

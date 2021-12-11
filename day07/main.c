@@ -21,6 +21,7 @@ int main()
     if (fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -43,6 +44,8 @@ int main()
         list.size++;
     }
 
+    fclose(fp);
+
     printf("List size: %d\n", list.size);
     printf("Alloc size: %d\n", list._alloc_size);
 
@@ -64,6 +67,9 @@ int main()
     }
 
     printf("B fuel: %d\n", fuel);
+
+    free(list.arr);
+
     return 0;
 }
 

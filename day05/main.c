@@ -10,7 +10,6 @@ int hydrothermal_venture(bool useDiagonals);
 
 int main()
 {
-
     int a = hydrothermal_venture(false);
     int b = hydrothermal_venture(true);
 
@@ -26,6 +25,7 @@ int hydrothermal_venture(bool useDiagonals)
     if(fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -80,6 +80,9 @@ int hydrothermal_venture(bool useDiagonals)
     {
         if(arr[i] > 1) overlaps++;
     }
+
+    free(arr);
+    fclose(fp);
 
     return overlaps;
 }

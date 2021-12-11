@@ -25,6 +25,7 @@ long get_population_size(const int time)
     if (fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -35,6 +36,8 @@ long get_population_size(const int time)
     {
         population[input]++;
     }
+
+    fclose(fp);
 
     // Loop over all days and double the part of the population which have an internal timer of 0
     // the new fish are inserted into the "new_population" which wait for 2 days before being added into "mature" population

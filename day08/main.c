@@ -25,6 +25,7 @@ void full_decode()
     if (fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -98,6 +99,8 @@ void full_decode()
         sum += number;
     }
 
+    fclose(fp);
+
     printf("Sum = %d\n", sum);
 }
 
@@ -127,6 +130,7 @@ void simple_counting()
     if (fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -147,6 +151,8 @@ void simple_counting()
             if(strlen(segments[i]) == 7) matching_digits++; // 8
         }
     }
+
+    fclose(fp);
 
     printf("Matching digits = %d\n", matching_digits);
 }

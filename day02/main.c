@@ -26,6 +26,7 @@ void dive_a()
     if(fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -57,6 +58,7 @@ void dive_b()
     if(fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 

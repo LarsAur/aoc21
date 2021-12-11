@@ -28,6 +28,7 @@ void win_last()
     if(fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -62,6 +63,8 @@ void win_last()
         }
         won_boards[i] = 0;
     }
+
+    fclose(fp);
 
     // Loop through drawn numbers and mark them off in the boards
     for(int i = 0; i < N_NUMBERS; i++)
@@ -118,10 +121,10 @@ void win_last()
 void win_first()
 {
     FILE* fp = fopen("./inputs.txt", "r");
-
     if(fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -153,6 +156,8 @@ void win_first()
             }
         }    
     }
+
+    fclose(fp);
 
     // Loop through drawn numbers and mark them off in the boards
     for(int i = 0; i < N_NUMBERS; i++)

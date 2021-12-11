@@ -16,6 +16,7 @@ int main()
     if (fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 
@@ -31,6 +32,8 @@ int main()
             }
         }
     }
+
+    fclose(fp);
 
     int total_risk = 0;
     int top_basin_sizes[3];

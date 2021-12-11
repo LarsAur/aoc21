@@ -23,6 +23,7 @@ int get_num_increases(int window)
     if(fp == NULL)
     {
         perror("Unable to open file");
+        fclose(fp);
         exit(1);
     }
 

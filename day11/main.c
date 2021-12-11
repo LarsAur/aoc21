@@ -32,33 +32,33 @@ void append(list_t *list, void *element);
 
 int main()
 {
-
-    FILE *fp = fopen("./inputs.txt", "r");
-    if (fp == NULL)
-    {
-        perror("Unable to open file");
-        exit(1);
-    }
-
     uint8_t energy[WIDTH][HEIGHT];
     bool flash[WIDTH][HEIGHT];
     int total_flashes = 0;
 
     list_t to_inc =
-        {
-            .arr = malloc(sizeof(coord_t)),
-            .byte_size = sizeof(coord_t),
-            .size = 0,
-            ._alloc_size = 1,
-        };
+    {
+        .arr = malloc(sizeof(coord_t)),
+        .byte_size = sizeof(coord_t),
+        .size = 0,
+        ._alloc_size = 1,
+    };
 
     list_t to_reset =
-        {
-            .arr = malloc(sizeof(coord_t)),
-            .byte_size = sizeof(coord_t),
-            .size = 0,
-            ._alloc_size = 1,
-        };
+    {
+        .arr = malloc(sizeof(coord_t)),
+        .byte_size = sizeof(coord_t),
+        .size = 0,
+        ._alloc_size = 1,
+    };
+
+    FILE *fp = fopen("./inputs.txt", "r");
+    if (fp == NULL)
+    {
+        perror("Unable to open file");
+        fclose(fp);
+        exit(1);
+    }
 
     for (int i = 0; i < HEIGHT; i++)
     {
@@ -71,6 +71,8 @@ int main()
             }
         }
     }
+
+    fclose(fp);
 
     memset(flash, false, WIDTH * HEIGHT);
     print(energy, flash);
@@ -92,7 +94,6 @@ int main()
         perform_flash(&to_inc, &to_reset, energy, flash);
         i++;
     }
-
     printf("All flash at: %d\n", i);
 
     free(to_inc.arr);
