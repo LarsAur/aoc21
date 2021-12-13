@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g
+CFLAGS=-O3
 DEPS=
 OBJ=main.o
 OUT=main.out
